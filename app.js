@@ -39,7 +39,7 @@ app.controller('PostsCtrl', [
 '$stateParams',
 'posts',
 function($scope, $stateParams, posts){
-
+  $scope.post = posts.posts[$stateParams.id];
 }]);
 
 app.config([
