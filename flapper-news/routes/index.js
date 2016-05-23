@@ -31,16 +31,15 @@ router.post('/posts', function(req, res, next){
 /* GET /posts/:id - 
 return an individual post with associated comments */
 router.param('post', function(req, res, next, id) {
-	var query = Post.findById(id);
+  var query = Post.findById(id);
 
-	query.exec(function (err, post){
-		if (err) { return next(err); }
-		if(!post) { return next(new Error('can\'t find post'));
-			}
+  query.exec(function (err, post){
+    if (err) { return next(err); }
+    if (!post) { return next(new Error('can\'t find post')); }
 
-		req.post = post;
-		return next();
-	});
+    req.post = post;
+    return next();
+  });
 });
 
 /* Test to get post with ID */
@@ -53,6 +52,22 @@ router.put('/posts/:post/upvote', function(req, res, next) {
     if (err) { return next(err); }
 
     res.json(post);
+  });
+});
+
+router.post('/posts/:post/comments', function(req, res, next) {
+  var comment = new Comment(req.body);
+  comment.post = req.post;
+
+  comment.save(function(err, comment){
+    if(err){ return next(err); }
+
+    req.post.comments.push(comment);
+    req.post.save(function(err, post) {
+      if(err){ return next(err); }
+
+      res.json(comment);
+    });
   });
 });
 
