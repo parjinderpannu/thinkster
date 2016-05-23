@@ -9,10 +9,20 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var mongoose = require('mongoose');
+
+// connect MongoDB
+mongoose.connect('mongodb://localhost/news-test', function(err,db){
+    if (!err){
+        console.log('Connected to /news-test!');
+    } else{
+        console.dir(err); //failed to connect
+    }
+});
+
 require('./models/Posts');
 require('./models/Comments');
 
-mongoose.connect('mongodb://localhost/news1');
+var routes = require('./routes/index');
 
 var app = express();
 
