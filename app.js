@@ -12,6 +12,10 @@ var app = angular.module('flapperNews', ['ui.router']);
           title: $scope.title,
           link: $scope.title,
           upvotes: 0
+          comments: [
+            {author: 'Joe', body: 'Cool post!', upvotes: 0},
+            {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+          ]
         });
         $scope.title = '';
         $scope.link = '';
