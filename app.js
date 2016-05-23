@@ -13,8 +13,13 @@ app.controller('MainCtrl', ['$scope',
     ];
 // Adding a addPost function
     $scope.addPost = function(){
+      if(!$scope.title || $scope.title === '') { return; }
       $scope.posts.push({title: $scope.title, upvotes: 0});
       $scope.title = '';
+    };
+// Adding a Increase upvote count func
+    $scope.incrementUpvotes = function(post) {
+      post.upvotes += 1;
     };
   } 
 ]);
