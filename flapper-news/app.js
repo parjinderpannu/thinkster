@@ -5,15 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
 var mongoose = require('mongoose');
 
 // connect MongoDB
-mongoose.connect('mongodb://localhost/news-test', function(err,db){
+mongoose.connect('mongodb://localhost/newsTest', function(err,db){
     if (!err){
-        console.log('Connected to /news-test!');
+        console.log('Connected to /newsTest!');
     } else{
         console.dir(err); //failed to connect
     }
@@ -23,6 +20,8 @@ require('./models/Posts');
 require('./models/Comments');
 
 var routes = require('./routes/index');
+var users = require('./routes/users');
+
 
 var app = express();
 

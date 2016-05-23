@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+console.log("Before get post");
 /* GET /posts - return a list of posts and associated metadata */
 router.get('/posts', function(req, res, next){
 	Post.find(function(err, posts){
@@ -16,6 +17,8 @@ router.get('/posts', function(req, res, next){
 		res.json(posts);
 	});
 });
+
+console.log("after get post");
 
 /* POST /posts - create a new post */
 router.post('/posts', function(req, res, next){
@@ -27,5 +30,6 @@ router.post('/posts', function(req, res, next){
 		res.json(post);
 	});
 });
+
 
 module.exports = router;
